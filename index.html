@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-md rounded p-8 max-w-md w-full">
+    <h1 class="text-2xl font-bold mb-4 text-center text-blue-600">Basic Calculator</h1>
+    <div class="mb-4">
+      <input id="num1" type="number" placeholder="Enter first number" 
+        class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300">
+    </div>
+    <div class="mb-4">
+      <input id="num2" type="number" placeholder="Enter second number" 
+        class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300">
+    </div>
+    <div class="grid grid-cols-4 gap-2 mb-4">
+      <button onclick="calculate('+')" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 transition duration-300">+</button>
+      <button onclick="calculate('-')" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 transition duration-300">-</button>
+      <button onclick="calculate('*')" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 transition duration-300">*</button>
+      <button onclick="calculate('/')" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 transition duration-300">/</button>
+    </div>
+    <p id="result" class="text-lg text-center text-green-600 font-semibold"></p>
+  </div>
+
+  <script>
+    function calculate(operation) {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      let result = '';
+
+      if (isNaN(num1) || isNaN(num2)) {
+        result = 'Please enter valid numbers.';
+      } else {
+        switch (operation) {
+          case '+':
+            result = num1 + num2;
+            break;
+          case '-':
+            result = num1 - num2;
+            break;
+          case '*':
+            result = num1 * num2;
+            break;
+          case '/':
+            result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero!';
+            break;
+          default:
+            result = 'Invalid operation.';
+        }
+      }
+      document.getElementById('result').textContent = `Result: ${result}`;
+    }
+  </script>
+</body>
+</html>
